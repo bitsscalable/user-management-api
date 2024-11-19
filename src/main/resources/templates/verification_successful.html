@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Welcome</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Welcome to Our Service</h1>
+    <p>Please select a link below:</p>
+    <ul>
+        <li><a th:href="@{/login}">Login</a></li>
+        <li><a th:href="@{/signup}">Sign Up</a></li>
+        <li><a th:href="@{/about}">About Us</a></li>
+    </ul>
+</body>
+</html>

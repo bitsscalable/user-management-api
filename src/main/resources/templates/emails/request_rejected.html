@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Request Rejected</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .email-header {
+            background-color: #dc3545;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+        }
+        .email-body {
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .email-footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            color: #888;
+        }
+        .action-button {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .action-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            Request Rejected
+        </div>
+        <div class="email-body">
+            <p>Hi ,</p>
+            <p>Unfortunately, your request to exchange the book was rejected by the lender.</p>
+            <p>You can explore other books available for exchange or try reaching out to other users.</p>
+            <p>Thank you for using our platform, and we hope you find another great book to enjoy!</p>
+            <a th:href="http://localhost:4200/requests"  target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">
+                View Details
+            </a>
+        </div>
+        <div class="email-footer">
+            &copy; 2024 Library. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

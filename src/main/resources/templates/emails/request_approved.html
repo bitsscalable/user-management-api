@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Request Approved</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .email-header {
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+        }
+        .email-body {
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .email-footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+            color: #888;
+        }
+        .action-button {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .action-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            Request Approved
+        </div>
+        <div class="email-body">
+            <p>Hi happy person,</p>
+            <p>Great news! Your request to exchange your requested book has been approved by the lender.</p>
+            <p>You can find more details regarding the book within the app.</p>
+            <p>Thank you for using our platform, and happy reading!</p>
+            <a th:href="http://localhost:4200/requests" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; font-weight: bold; border-radius: 5px;">
+                View Details
+            </a>
+        </div>
+        <div class="email-footer">
+            &copy; 2024 Library. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

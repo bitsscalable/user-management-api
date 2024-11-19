@@ -1,0 +1,74 @@
+# Logs
+*.log
+*.log.*
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
+
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Spring Boot specific files
+spring-boot-loader.jar
+
+# Maven specific
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Gradle specific
+build/
+.gradle/
+*.gradle
+*.gradle.*
+gradle-app.setting
+.gradle-cache/
+gradle.log
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Eclipse files
+*.classpath
+*.project
+*.settings/
+.apt_generated/
+.factorypath/
+
+# VS Code files
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files from development
+*.~*
+*.bak
+*.backup
+*.tmp
+
+# Database files
+*.h2.db
+*.mv.db
+*.db
+
+# Misc
+.env
+
