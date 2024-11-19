@@ -5,7 +5,9 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +32,7 @@ public class BooksController {
     @GetMapping("/getAvailableBooks")
     public List<BooksDTO> getAvailableBooks(@RequestParam String pincode,
     @RequestParam String author,@RequestParam String title,@RequestParam List<String> genres ) {
+        logger.info("in getAvailableBooks method..");
         return booksService.getAllBooks(pincode,author,title,genres);
     }
 
@@ -43,7 +46,7 @@ public class BooksController {
             throw e;
         }
 
-        return ResponseEntity.ok("Book added successfully");
+        return ResponseEntity.status(HttpStatus.OK).body(book);
     }
 
     @GetMapping("/getMyBooks")
@@ -119,6 +122,7 @@ public class BooksController {
 
     @GetMapping("/getBookCounts")
     public List<Integer> getBookCounts( ) {
+        logger.info("in getBookCounts method..");
         try {
             return booksService.getBookCounts();
         } catch (Exception e) {

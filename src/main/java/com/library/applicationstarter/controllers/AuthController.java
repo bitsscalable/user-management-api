@@ -3,6 +3,7 @@ package com.library.applicationstarter.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.library.applicationstarter.dtos.JwtResponseDTO;
 import com.library.applicationstarter.dtos.LoginRequestDTO;
+import com.library.applicationstarter.dtos.StatusDTO;
 import com.library.applicationstarter.service.AuthService;
 import com.library.applicationstarter.service.UserCredService;
 import com.library.applicationstarter.utils.JwtUtil;
@@ -46,7 +48,7 @@ public class AuthController {
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequestDTO loginRequest) {
         logger.info("in authenticateUser method..");
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername().toLowerCase(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
@@ -77,16 +79,24 @@ public class AuthController {
     }
 
     @GetMapping("/verifyEmail")
-    public void sendVerificationCode( String email) {
+    public ResponseEntity<StatusDTO> sendVerificationCode( String email) {
         logger.info("in sendVerificationCode method..");
-        authService.sendVerificationCode(email);
+        try {
+            authService.sendVerificationCode(email);
+            return ResponseEntity.status(HttpStatus.OK).body(new StatusDTO());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Error(e);
+        }
+        
     }
 
     @PostMapping("/updatePassword")
-    public void updateUserPassword(String password, String email) throws Exception {
+    public ResponseEntity<StatusDTO> updateUserPassword(@RequestBody LoginRequestDTO request) throws Exception {
         logger.info("In updateUserPassword methos...");
         try {
-            authService.updateUserPassword(password, email);
+            authService.updateUserPassword(request.getPassword(), request.getEmail().toLowerCase());
+            return ResponseEntity.status(HttpStatus.OK).body(new StatusDTO());
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception("Error while updating password. Try Email Verification again.");

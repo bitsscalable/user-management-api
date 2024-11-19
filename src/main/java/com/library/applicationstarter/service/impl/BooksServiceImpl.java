@@ -62,12 +62,17 @@ public class BooksServiceImpl implements BooksService {
     
             Query query = new Query();
     
-            query.addCriteria(new Criteria().orOperator(
-                            Criteria.where("title").regex(".*" + Pattern.quote(title.toLowerCase()) + ".*", "i"),
-                            Criteria.where("author").regex(".*" + Pattern.quote(author.toLowerCase()) + ".*", "i"),
-                            Criteria.where("genres").in(genres),
-                            Criteria.where("pincode").is(pincode))
-            );
+            query.addCriteria(
+                new Criteria().andOperator(
+                    new Criteria().orOperator(
+                        Criteria.where("title").regex(".*" + Pattern.quote(title.toLowerCase()) + ".*", "i"),
+                        Criteria.where("author").regex(".*" + Pattern.quote(author.toLowerCase()) + ".*", "i"),
+                        Criteria.where("genres").in(genres),
+                        Criteria.where("pincode").is(pincode)
+                    ),
+                Criteria.where("uploadedBy").ne(securityContext.getLoggedInUsername()) // Exclude books uploaded by logged in user
+));
+
     
             List<Books> books =  mongoTemplate.find(query, Books.class);
     
@@ -98,7 +103,7 @@ public class BooksServiceImpl implements BooksService {
             try {
                 Books book = new Books();
                 logger.info("before getting loggedin username...");
-                book.setUploadedBy(securityContext.getLoggedInUsername());
+                bookDetails.setUploadedBy(securityContext.getLoggedInUsername());
                 logger.info("after getting loggedin username...");
     
                 BeanUtils.copyProperties(bookDetails, book);

@@ -20,7 +20,7 @@ public class JwtUtil {
     byte[] decodedBytes = DatatypeConverter.parseBase64Binary("r9XzPlTkLHYxJ6zVcYmbQi5o1CRZY7T9cNpUbWuZlqTR9hYQFHGldjX3a9kWxHpS");
     String SECRET_KEY = Base64.getEncoder().encodeToString(decodedBytes);
 
-    private long EXPIRATION_TIME = 1800000; 
+    private long EXPIRATION_TIME = 3600000; 
 
     public String generateJwtToken(Authentication authentication) {
         UserDetails userPrincipal = (UserDetails) authentication.getPrincipal();

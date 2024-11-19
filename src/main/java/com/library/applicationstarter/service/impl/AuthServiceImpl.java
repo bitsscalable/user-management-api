@@ -90,7 +90,7 @@ public class AuthServiceImpl implements AuthService {
 
         Map<String, Object> mailVariables = new HashMap();
         mailVariables.put("verification_link", "http://localhost:8080/api/verification?email="+email+"&code="+code);
-
+        System.out.println("http://localhost:8080/api/verification?email="+email+"&code="+code);
         emailServices.sendEmail(email, template.getSubject(), template.getTemplatePath()
         , mailVariables);
 
@@ -255,20 +255,20 @@ public class AuthServiceImpl implements AuthService {
             }
 
             //check if email already exists
-            if(doesUserExist(request.getEmail())){
+            if(doesUserExist(request.getEmail().toLowerCase())){
                 throw new Error("Username/email id already exists");
             }
 
             // else create new record in users, user creds
             
             Users userBean = new Users(Long.valueOf(generatorService.getNextSequenceId("users")+""),
-             request.getFirstName(), request.getMiddleName(), request.getLastName(), request.getEmail(),
+             request.getFirstName(), request.getMiddleName(), request.getLastName(), request.getEmail().toLowerCase(),
               1, new Date(), new Date());
 
               usersRepo.save(userBean);
 
             // update user creds
-            UserCreds credsBean = new UserCreds(request.getEmail(), passwordEncoder.encode(request.getPassword()), new Date());
+            UserCreds credsBean = new UserCreds(request.getEmail().toLowerCase(), passwordEncoder.encode(request.getPassword()), new Date());
 
 
 
