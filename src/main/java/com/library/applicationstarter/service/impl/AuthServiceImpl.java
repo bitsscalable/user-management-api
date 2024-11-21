@@ -276,7 +276,7 @@ public class AuthServiceImpl implements AuthService {
 
             // send welcome mail
 
-            sendWelcomeMail(request.getFirstName(),request.getEmail());
+            // sendWelcomeMail(request.getFirstName(),request.getEmail());
 
         } catch (Exception e) {
            e.printStackTrace();
