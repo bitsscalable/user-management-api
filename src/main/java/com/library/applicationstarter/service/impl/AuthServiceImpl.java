@@ -312,4 +312,19 @@ public class AuthServiceImpl implements AuthService {
 
     }
 
+    @Override
+    public String getEmail() throws Exception {
+        logger.info("in getEmail method");
+         
+        try {
+            return securityContext.getLoggedInUsername();
+            
+         } catch (Exception e) {
+             e.printStackTrace();
+             throw e;
+         }
+ 
+         
+    }
+
 }

@@ -122,6 +122,12 @@ public class AuthController {
         logger.info("in getUserName method..");
         return ResponseEntity.ok(authService.getUserName());
     }
+
+    @GetMapping("/getEmail")
+    public ResponseEntity<String> getEmail() throws Exception {
+        logger.info("in getEmail method..");
+        return ResponseEntity.ok(authService.getEmail());
+    }
     
     
 
